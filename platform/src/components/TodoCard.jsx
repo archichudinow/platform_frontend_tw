@@ -30,7 +30,7 @@ export default function TodoCard({todoItem}) {
 
         {/* FRONT BACKGROUND */}
         <img
-            className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(https://nightmarish-shadow-g44j4r6qqjv72vjr4-5173.app.github.dev/public/mask_inv.png)]"
+            className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
             src={todoItem.image}
             alt="card cover image"
         />
