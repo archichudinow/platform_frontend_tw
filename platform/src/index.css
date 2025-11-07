@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: #ffffff;
+  --color-panel: #f4f4f4;
+  --color-primary: #000000;
+};
+
+.dark {
+  --color-background: #2b2f35;
+  --color-panel: rgb(39, 44, 50);
+  --color-primary: #FFFFFF;
+};
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@utility animate-fade-in {
+  animation: fade-in 2s ease-out forwards;
+}

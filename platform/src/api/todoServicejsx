@@ -1,0 +1,28 @@
+import axios from "axios";
+
+const todoAPI = axios.create({
+    baseURL: "https://fast-api-words-match.vercel.app",
+    headers: {'Content-Type': 'application/json'},
+});
+
+const getTodos = async () => {
+    const response = await todoAPI.get("/todos");
+    return response.data;
+};
+
+const delTodo = async (todoItem) => {
+    const response = await todoAPI.delete(`/todos/${todoItem.id}`);
+    return response.data
+};
+
+const postTodo = async (todoItem) => {
+    const response = await todoAPI.post("/todos",todoItem);
+    return response.data
+};
+
+const putTodo = async (todoItem) => {
+    const response = await todoAPI.put(`/todos/${todoItem.id}`, todoItem);
+    return response.data
+};
+
+export { getTodos, delTodo, postTodo, putTodo };
