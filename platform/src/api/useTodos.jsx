@@ -32,10 +32,8 @@ export const useUpdTodo = () => {
   return useMutation({
     mutationFn: (todoItem) => putTodo(todoItem),
     onSuccess: () => {
-      setTimeout(() => {
         queryClient.invalidateQueries(['todos']);
         console.log('Successfully updated todo card');
-      }, 10000);
     },
     onError: (err) => {
       console.error(`Error: ${err.message}`);

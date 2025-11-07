@@ -19,14 +19,14 @@ export default function TodoInputBar() {
         <div>
             <form className="flex justify-between px-4 pb-10 gap-5 min-h-14" onSubmit={handleSubmit}>
                 <input 
-                    className="rounded-lg w-full h-10 px-3 py-1 focus:outline-0 placeholder-primary bg-panel" 
+                    className="rounded-lg w-full h-10 px-3 py-1 focus:outline-0 placeholder-primary/50 bg-panel" 
                     type="text" 
                     placeholder="Add your todo here..."
                     value={userInputState}
                     onChange={(e) => setUserInputState(e.target.value)}
                     />
                 <button 
-                    className="rounded-lg w-10 h-10 item-center justify-center bg-panel" 
+                    className="rounded-lg w-10 h-10 item-center justify-center bg-panel text-primary/50" 
                     type="submit"
                     disabled={loadingState}
                     >{loadingState ? "" : "+"}</button>

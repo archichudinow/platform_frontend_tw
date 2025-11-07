@@ -30,7 +30,7 @@ export default function TodoCard({todoItem}) {
 
         {/* FRONT BACKGROUND */}
         <img
-            className="relative opacity-0 grayscale block w-full min-h-32 h-full"
+            className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(https://nightmarish-shadow-g44j4r6qqjv72vjr4-5173.app.github.dev/public/mask_inv.png)]"
             src={todoItem.image}
             alt="card cover image"
         />
@@ -41,10 +41,11 @@ export default function TodoCard({todoItem}) {
 
             {/* FC HEAD */}
             <div className="flex justify-end items-start">
-                <button className="m-3 h-7 w-7 border rounded-sm border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70"
-                        onClick={() => handleDel(todoItem)}
-                        disabled={loadingState}
-                >×</button>
+            <button className="m-3 h-7 w-7 border rounded-sm border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70 hover:bg-red-300/50
+                                disabled:bg-primary/50 disabled:opacity-70"
+                    onClick={() => handleDel(todoItem)}
+                    disabled={loadingState}
+            >×</button>
             </div>
 
             {/* FC MAIN */}
@@ -55,7 +56,7 @@ export default function TodoCard({todoItem}) {
                         className="flex-none w-5 h-5 border rounded-sm border-primary/30 appearance-none
                                     checked:bg-pink-600 checked:border-panel"
                         checked={isCompleted}
-                        onChange={() => toggleStatus()}
+                        onChange={() => toggleStatus(todoItem)}
                     />
                     <p className={`text-primary/50 wrap-break-words ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
                 </div>
@@ -75,7 +76,7 @@ export default function TodoCard({todoItem}) {
 
         {/* BACK BACKGROUND */}
         <img
-            className="relative block w-full h-auto min-h-32"
+            className="relative block w-full h-auto min-h-32 opacity-75"
             src={todoItem.image}
             alt="card cover image"
         />
@@ -85,10 +86,13 @@ export default function TodoCard({todoItem}) {
             <div className="h-full w-full flex flex-col">
 
             {/* BC HEAD */}
-            <button className="m-3 h-7 w-7 border rounded-sm border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70"
-                    onClick={() => handleDel(todoItem)}
-                    disabled={loadingState}
-            >×</button>
+            <div className="flex justify-end items-start">
+                <button className="m-3 h-7 w-7 border rounded-sm border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70 hover:bg-red-300/50
+                                    disabled:bg-primary/50 disabled:opacity-70"
+                        onClick={() => handleDel(todoItem)}
+                        disabled={loadingState}
+                >×</button>
+            </div>
 
             {/* BC MAIN */}
             <div className="flex grow items-end">
