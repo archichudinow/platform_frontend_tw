@@ -23,15 +23,15 @@ export default function TodoCard({todoItem}) {
     {/* CARD */}
     <div className="card-wrapper break-inside-avoid inline-block">
     <div className="group w-full mb-5" key={todoItem.id}>
-    <div className={`perspective-near transform-3d delay-1000 duration-2000 ${isCompleted ? "rotate-y-180" : ""} rounded-sm shadow-md/5 border border-primary/1 relative`}>
+    <div className={`perspective-near transform-3d delay-1000 duration-2000 ${isCompleted ? "rotate-y-180" : ""} shadow-md/5 relative`}>
 
 
         {/* FRONT FACE */}
-        <div className="bg-panel backface-hidden rounded-lg overflow-hidden">
+        <div className="bg-panel backface-hidden rounded-md overflow-hidden">
 
         {/* FRONT BACKGROUND */}
         <img
-            className="relative opacity-5 grayscale block w-full min-h-46 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
+            className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
             src={todoItem.image}
             alt="card cover image"
         />
@@ -54,7 +54,7 @@ export default function TodoCard({todoItem}) {
                 <div className="flex flex-row items-center mx-4 gap-4">
                     <input 
                         type="checkbox" 
-                        className="flex-none w-5 h-5 border rounded-sm border-primary/30 appearance-none
+                        className="flex-none w-5 h-5 border rounded-md border-primary/30 appearance-none
                                     checked:bg-pink-600 checked:border-panel"
                         checked={isCompleted}
                         onChange={() => toggleStatus(todoItem)}

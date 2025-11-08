@@ -16,7 +16,7 @@ export default function TodoCardCollection({todoItem}) {
     {/* CARD */}
     <div className="card-wrapper break-inside-avoid inline-block">
     <div className="group w-full h-fit mb-5" key={todoItem.id} onClick={() => setIsCompleted(!isCompleted)}>
-    <div className={`perspective-near transform-3d duration-2000 ${isCompleted ? "rotate-y-180" : ""} rounded-lg shadow-md/5 border border-primary/1 relative`}>
+    <div className={`perspective-near transform-3d duration-2000 ${isCompleted ? "rotate-y-180" : ""} shadow-md/5 relative`}>
 
 
         {/* FRONT FACE */}
@@ -24,7 +24,7 @@ export default function TodoCardCollection({todoItem}) {
 
         {/* FRONT BACKGROUND */}
         <img
-            className="relative opacity-5 grayscale block w-full min-h-46 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
+            className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
             src={todoItem.image}
             alt="card cover image"
         />
