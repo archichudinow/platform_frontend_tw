@@ -14,7 +14,7 @@ export default function TodoCollection() {
 
         <div className="mb-10 text-primary/50">
             <div className="flex justify-between px-4 pb-2">
-                <h1>Week 1</h1>
+                <h1>Today</h1>
                 <h1>5/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b  border-primary/50"></div>
@@ -23,7 +23,7 @@ export default function TodoCollection() {
 
         <div className="mb-10 text-primary/50">
             <div className="flex justify-between px-4 pb-2">
-                <h1>Week 2</h1>
+                <h1>One Day Ago</h1>
                 <h1>4/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b border-primary/50"></div>

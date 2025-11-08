@@ -18,11 +18,9 @@ export default function TodoGridCollection({period}) {
         return <div className="columns-2 sm:columns-3 md:columns-5 lg:columns-5 gap-3 px-4 "></div>;
     };
 
-    const openTodos = data.filter(todoItem => todoItem.status === true)
-
     return (
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-3 px-4 ">
-            {openTodos.map(todoItem => (
+            {data.map(todoItem => (
                 <TodoCardCollection key={todoItem.id} todoItem={todoItem}/>
             ))}
         </div>

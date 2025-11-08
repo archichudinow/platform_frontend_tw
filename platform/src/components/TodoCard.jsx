@@ -41,7 +41,7 @@ export default function TodoCard({todoItem}) {
 
             {/* FC HEAD */}
             <div className="flex justify-end items-start">
-            <button className="m-3 h-7 w-7 border rounded-sm border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70 focus:hover:bg-red-300/50
+            <button className="m-3 h-7 w-7 border rounded-md border-primary/10 opacity-0 transition duration-300 group-hover:group-focus:opacity-70 focus:hover:bg-red-300/50
                                 disabled:bg-primary/50 disabled:opacity-70"
                     onClick={() => handleDel(todoItem)}
                     disabled={loadingState}
@@ -58,7 +58,7 @@ export default function TodoCard({todoItem}) {
                         checked={isCompleted}
                         onChange={() => toggleStatus(todoItem)}
                     />
-                    <p className={`text-primary/50 wrap-break-words ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
+                    <p className={`text-xs sm:text-xs lg:text-md text-primary/50 wrap-break-words ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
                 </div>
 
             </div>
@@ -88,7 +88,7 @@ export default function TodoCard({todoItem}) {
 
             {/* BC HEAD */}
             <div className="flex justify-end items-start">
-            <button className="m-3 h-7 w-7 border rounded-sm border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70 focus:hover:bg-red-300/50
+            <button className="m-3 h-7 w-7 border rounded-md border-primary/10 opacity-0 transition duration-300 group-hover:group-focus:opacity-70 focus:hover:bg-red-300/50
                                 disabled:bg-primary/50 disabled:opacity-70"
                     onClick={() => handleDel(todoItem)}
                     disabled={loadingState}

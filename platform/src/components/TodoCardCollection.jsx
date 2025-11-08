@@ -1,23 +1,15 @@
 import { useState } from 'react';
-import { useDelTodo, useUpdTodo } from '../api/useTodos';
+import { useDelTodo } from '../api/useTodos';
 
 export default function TodoCardCollection({todoItem}) {
     const [isCompleted, setIsCompleted] = useState(todoItem.status);
 
     const delTodo = useDelTodo();
-    const updTodo = useUpdTodo();
-    const loadingState = delTodo.isPending || updTodo.isPending;
+    const loadingState = delTodo.isPending;
 
     const handleDel = (todoItem) => {
         delTodo.mutate(todoItem);
     };
-
-    const toggleStatus = (todoItem) => {
-        const updatedTodoItem = { ...todoItem, status: true, archive: true};
-        updTodo.mutate(updatedTodoItem);
-        setIsCompleted(true);
-    };
-
 
     return (
     <>
@@ -42,7 +34,7 @@ export default function TodoCardCollection({todoItem}) {
 
             {/* FC HEAD */}
             <div className="flex justify-end items-start">
-            <button className="m-3 h-7 w-7 border rounded-md border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70 focus:hover:bg-red-300/50
+            <button className="m-3 h-7 w-7 border rounded-md border-primary/10 opacity-0 transition duration-300 group-hover:group-focus:opacity-70 focus:hover:bg-red-300/50
                                 disabled:bg-primary/50 disabled:opacity-70"
                     onClick={() => handleDel(todoItem)}
                     disabled={loadingState}
@@ -82,7 +74,7 @@ export default function TodoCardCollection({todoItem}) {
 
             {/* BC HEAD */}
             <div className="flex justify-end items-start">
-            <button className="m-3 h-7 w-7 border rounded-md border-primary/10 opacity-0 transition duration-300 group-hover:opacity-70 focus:hover:bg-red-300/50
+            <button className="m-3 h-7 w-7 border rounded-md border-primary/10 opacity-0 transition duration-300 group-hover:group-focus:opacity-70 focus:hover:bg-red-300/50
                                 disabled:bg-primary/50 disabled:opacity-70"
                     onClick={() => handleDel(todoItem)}
                     disabled={loadingState}
