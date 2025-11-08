@@ -44,9 +44,8 @@ export default function TodoCardCollection({todoItem}) {
             {/* FC MAIN */}
             <div className="flex grow items-end">
                 <div className="flex flex-row items-center mx-4 gap-4">
-                    <p className="text-primary/50 wrap-break-words">{todoItem.title}</p>
+                    <p className={` text-primary/50 wrap-break-words ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
                 </div>
-
             </div>
 
             {/* FC FOOTER */}

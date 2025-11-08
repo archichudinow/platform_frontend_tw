@@ -58,7 +58,7 @@ export default function TodoCard({todoItem}) {
                         checked={isCompleted}
                         onChange={() => toggleStatus(todoItem)}
                     />
-                    <p className={`text-xs sm:text-xs lg:text-md text-primary/50 wrap-break-words ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
+                    <p className={` text-primary/50 text-balance break-all ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
                 </div>
 
             </div>
