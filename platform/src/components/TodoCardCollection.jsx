@@ -23,7 +23,7 @@ export default function TodoCardCollection({todoItem}) {
 
         {/* FRONT BACKGROUND */}
         <img
-            className="relative opacity-5 grayscale block w-full min-h-20 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
+            className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
             src={todoItem.image}
             alt="card cover image"
         />
@@ -44,12 +44,12 @@ export default function TodoCardCollection({todoItem}) {
             {/* FC MAIN */}
             <div className="flex grow items-end">
                 <div className="flex flex-row items-center mx-4 gap-4">
-                    <p className={` text-primary/50 wrap-break-words ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
+                    <p className={` text-primary/50 text-balance break-all ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
                 </div>
             </div>
 
             {/* FC FOOTER */}
-            <div className="flex justify-end items-end mt-4">
+            <div className="flex justify-end items-end">
                 <p className="m-3 text-xs text-primary/10">{todoItem.date_created}</p>
             </div>
 
