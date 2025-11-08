@@ -13,7 +13,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
         <BrowserRouter>
         <div className="bg-background text-primary min-h-screen flex flex-col">
-        <div className="grow sm:mx-4 md:mx-8 lg:mx-auto lg:max-w-4xl flex flex-col" >
+        <div className="sm:mx-4 md:mx-8 lg:mx-auto lg:max-w-4xl flex flex-col grow lg:min-w-4xl" >
 
           {/* Header */}
           <div><AppNavBar /></div>

@@ -9,8 +9,8 @@ export default function AppThemeToggle() {
     };
 
     return (
-        <button onClick={handleToggle} > 
-            ○
+        <button className="flex items-center" onClick={handleToggle} > 
+            ⚈
         </button>
     );
 }
