@@ -14,7 +14,8 @@ export default function TodoCardCollection({todoItem}) {
     return (
     <>
     {/* CARD */}
-    <div className="group w-full h-fit mb-5 break-inside-avoid" key={todoItem.id} onClick={() => setIsCompleted(!isCompleted)}>
+    <div className="card-wrapper break-inside-avoid inline-block">
+    <div className="group w-full h-fit mb-5" key={todoItem.id} onClick={() => setIsCompleted(!isCompleted)}>
     <div className={`perspective-near transform-3d duration-2000 ${isCompleted ? "rotate-y-180" : ""} rounded-lg shadow-md/5 border border-primary/1 relative`}>
 
 
@@ -91,6 +92,7 @@ export default function TodoCardCollection({todoItem}) {
             </div>
         </div>
         </div>
+    </div>
     </div>
     </div>
     </>
