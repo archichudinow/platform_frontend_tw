@@ -2,10 +2,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getTodos, delTodo, postTodo, putTodo} from './todoServicejsx';
 
 // GET ALL TODOS
-export const useTodos = () => {
+export const useTodos = ({status, archive, period} = {}) => {
   return useQuery({
-    queryKey: ['todos'],
-    queryFn: getTodos,
+    queryKey: ['todos',{status, archive, period}],
+    queryFn: () => getTodos({status, archive, period}),
     });
 };
 

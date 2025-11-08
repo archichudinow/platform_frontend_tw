@@ -5,8 +5,8 @@ const todoAPI = axios.create({
     headers: {'Content-Type': 'application/json'},
 });
 
-const getTodos = async () => {
-    const response = await todoAPI.get("/todos");
+const getTodos = async (params={}) => {
+    const response = await todoAPI.get("/todos", { params });
     return response.data;
 };
 
