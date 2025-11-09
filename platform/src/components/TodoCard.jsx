@@ -27,7 +27,7 @@ export default function TodoCard({todoItem}) {
 
 
         {/* FRONT FACE */}
-        <div className="bg-panel backface-hidden rounded-md overflow-hidden">
+        <div className="bg-panel border border-primary/0 hover:border-primary/30 duration-1000 backface-hidden rounded-md overflow-hidden">
 
         {/* FRONT BACKGROUND */}
         <img
@@ -76,7 +76,7 @@ export default function TodoCard({todoItem}) {
         </div>
 
         {/* BACK FACE */}
-        <div className="bg-panel absolute backface-hidden inset-0 rotate-y-180 rounded-sm overflow-hidden">
+        <div className="bg-panel absolute backface-hidden inset-0 rotate-y-180 rounded-sm overflow-hidden border border-pink-300/0 hover:border-pink-300/30 duration-1000">
 
         {/* BACK BACKGROUND */}
         <img
