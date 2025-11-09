@@ -47,13 +47,13 @@ export default function TodoCardCollection({todoItem}) {
             {/* FC MAIN */}
             <div className="flex grow items-end">
                 <div className="flex flex-row items-center mx-4 gap-4">
-                    <p className={` text-primary/50 text-balance break-all ${isCompleted ? "line-through" : ""}`}>{todoItem.title}</p>
+                    <p className="text-xs text-primary/50 text-balance break-all">{todoItem.title}</p>
                 </div>
             </div>
 
             {/* FC FOOTER */}
             <div className="flex justify-end items-end">
-                <p className="m-3 text-xs text-primary/10">{todoItem.date_created}</p>
+                <p className="m-3 text-[8px] text-primary/10">{todoItem.date_created}</p>
             </div>
 
             </div>

@@ -1,13 +1,6 @@
 import TodoGridCollection from "./TodoGridCollection";
-import { useState } from "react"
 
 export default function TodoCollection() {
-    const [weeksLoaded,setWeeksLoaded] = useState(1);
-
-    const handleLoadMore = () => {
-        setWeeksLoaded(prevWeeksLoaded => prevWeeksLoaded + 1);
-    };
-
 
     return (
         <>
@@ -30,6 +23,14 @@ export default function TodoCollection() {
             <TodoGridCollection period={"history_day_1"}/>
         </div>
 
+        <div className="mb-10 text-primary/50">
+            <div className="flex justify-between px-4 pb-2">
+                <h1>Two Days Ago</h1>
+                <h1>10/20</h1>
+            </div>
+            <div className="mx-4 mb-10 border-b border-primary/50"></div>
+            <TodoGridCollection period={"history_day_2"}/>
+        </div>
         </>
 
     );

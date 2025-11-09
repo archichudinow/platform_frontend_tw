@@ -21,8 +21,8 @@ export default function TodoCard({todoItem}) {
     return (
     <>
     {/* CARD */}
-    <div className="card-wrapper break-inside-avoid inline-block">
-    <div className="group w-full mb-5" key={todoItem.id}>
+    <div className="">
+    <div className="group w-full h-auto mb-5 inline-block card-wrapper break-inside-avoid" key={todoItem.id}>
     <div className={`perspective-near transform-3d delay-1000 duration-2000 ${isCompleted ? "rotate-y-180" : ""} shadow-md/5 relative`}>
 
 
