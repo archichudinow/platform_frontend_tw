@@ -15,7 +15,7 @@ export default function TodoCardCollection({todoItem}) {
     <>
     {/* CARD */}
     <div className="card-wrapper break-inside-avoid inline-block">
-    <div className="group w-full h-fit mb-5" key={todoItem.id} onClick={() => setIsCompleted(!isCompleted)}>
+    <div className="group w-full h-fit mb-5" key={todoItem.id} onClick={() => setIsCompleted((todoItem.status ? !isCompleted : isCompleted))}>
     <div className={`perspective-near transform-3d duration-2000 ${isCompleted ? "rotate-y-180" : ""} shadow-md/5 relative`}>
 
 

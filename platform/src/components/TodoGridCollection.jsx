@@ -5,7 +5,6 @@ import { useTodos } from "../api/useTodos";
 export default function TodoGridCollection({period}) {
     const params = {
         period: period,
-        status: true,
     }
 
     const { data, isLoading, isPending, isError, isSuccess, error } = useTodos(params);
