@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const items = [
   "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
@@ -16,10 +15,11 @@ const items = [
   "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
 ];
 
-export default function MasonryGridMotion() {
+export default function MasonryGridAgain() {
   const [numCols] = useState(5);
   const [draggingId, setDraggingId] = useState(null);
 
+  // Split items evenly across columns
   const createColumns = (numCols) => {
     const cols = Array.from({ length: numCols }, () => []);
     items.forEach((item, index) => {
@@ -34,30 +34,38 @@ export default function MasonryGridMotion() {
     setDraggingId({ colIndex, itemIndex });
   };
 
-  const handleDragEnd = () => {
-    setDraggingId(null);
-  };
-
   const handleDragOver = (e) => e.preventDefault();
 
+  // Drop on a specific item
   const handleDropOnItem = (targetColIndex, targetItemIndex) => {
     if (!draggingId) return;
 
     const newCols = columns.map((col) => [...col]);
     const draggedItem = newCols[draggingId.colIndex][draggingId.itemIndex];
+
+    // Remove from source column
     newCols[draggingId.colIndex].splice(draggingId.itemIndex, 1);
+
+    // Insert before target item
     newCols[targetColIndex].splice(targetItemIndex, 0, draggedItem);
+
     setColumns(newCols);
     setDraggingId(null);
   };
 
+  // Drop on empty column
   const handleDropOnColumn = (targetColIndex) => {
     if (!draggingId) return;
 
     const newCols = columns.map((col) => [...col]);
     const draggedItem = newCols[draggingId.colIndex][draggingId.itemIndex];
+
+    // Remove from source column
     newCols[draggingId.colIndex].splice(draggingId.itemIndex, 1);
+
+    // Append to empty column
     newCols[targetColIndex].push(draggedItem);
+
     setColumns(newCols);
     setDraggingId(null);
   };
@@ -72,40 +80,34 @@ export default function MasonryGridMotion() {
       {columns.map((col, colIndex) => (
         <div
           key={colIndex}
-          className="flex flex-col gap-4 min-h-[50px]"
+          className="flex flex-col gap-4 min-h-[50px]" // ensures empty column is droppable
           onDragOver={handleDragOver}
           onDrop={() => {
+            // only drop on column if empty
             if (col.length === 0) handleDropOnColumn(colIndex);
           }}
         >
-          <AnimatePresence>
-            {col.map((src, itemIndex) => (
-              <motion.div
-                key={src}
-                draggable
-                layout
-                drag="y"
-                dragConstraints={{ top: 0, bottom: 0 }}
-                onDragStart={() => handleDragStart(colIndex, itemIndex)}
-                onDragEnd={handleDragEnd}
-                onDragOver={handleDragOver}
-                onDrop={() => handleDropOnItem(colIndex, itemIndex)}
-                className={`cursor-grab transition-transform ${
-                  draggingId?.colIndex === colIndex &&
-                  draggingId?.itemIndex === itemIndex
-                    ? "opacity-50 scale-95"
-                    : ""
-                }`}
-                whileDrag={{ scale: 1.05, zIndex: 50 }}
-              >
-                <img
-                  className="h-auto w-full rounded-lg"
-                  src={src}
-                  alt={`Image ${src}`}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {col.map((src, itemIndex) => (
+            <div
+              key={src}
+              draggable
+              onDragStart={() => handleDragStart(colIndex, itemIndex)}
+              onDragOver={handleDragOver}
+              onDrop={() => handleDropOnItem(colIndex, itemIndex)}
+              className={`transition-transform ${
+                draggingId?.colIndex === colIndex &&
+                draggingId?.itemIndex === itemIndex
+                  ? "opacity-50 scale-95"
+                  : ""
+              }`}
+            >
+              <img
+                className="h-auto w-full rounded-lg"
+                src={src}
+                alt={`Image ${src}`}
+              />
+            </div>
+          ))}
         </div>
       ))}
     </div>

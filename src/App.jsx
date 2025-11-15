@@ -2,14 +2,12 @@ import AppNavBar from "./components/AppNavBar";
 import TodoPageMain from "./components/TodoPageMain";
 import TodoPageCollection from "./components/TodoPageCollection";
 import MasonryGrid from "./components/MasonryGrid";
-import MasonryGridAgain from "./components/MasonryGridAgain";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient();
 
 function App() {
-
 
   return (
         <QueryClientProvider client={queryClient}>
@@ -25,8 +23,7 @@ function App() {
             <Routes>
               <Route path="/" element={<TodoPageMain />}></Route>
               <Route path="/collection" element={<TodoPageCollection />}></Route>
-              <Route path="/framer" element={<MasonryGrid />}></Route>
-              <Route path="/again" element={<MasonryGridAgain />}></Route>
+              <Route path="/grid" element={<MasonryGrid />}></Route>
             </Routes>
           </div>
 
