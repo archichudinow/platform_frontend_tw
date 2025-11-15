@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const items = [
   "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
@@ -16,37 +16,41 @@ const items = [
 ];
 
 export default function MasonryGrid() {
-  const [numCols] = useState(5);
+  const [numCols, setNumCols] = useState(5);
 
-  // Split items evenly across columns
-  const createColumns = (numCols) => {
+  // Create columns when numCols changes
+  const columns = useMemo(() => {
     const cols = Array.from({ length: numCols }, () => []);
     items.forEach((item, index) => {
       cols[index % numCols].push(item);
     });
     return cols;
-  };
+  }, [numCols]);
 
-  const [columns, setColumns] = useState(createColumns(numCols));
+  const handleIncrease = () => setNumCols((n) => n + 1);
+  const handleDecrease = () =>
+    setNumCols((n) => (n > 1 ? n - 1 : n)); // prevent 0 columns
 
   return (
-    <div
-      className="grid gap-4"
-      style={{
-        gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))`,
-      }}
-    >
-      {columns.map((col, colIndex) => (
-        <div key={colIndex} className="flex flex-col gap-4 min-h-[50px]" >
+    <>
+      <div className="flex justify-center gap-3 pb-10">
+        <button onClick={handleDecrease}>DECREASE</button>
+        <h3>{numCols}</h3>
+        <button onClick={handleIncrease}>INCREASE</button>
+      </div>
 
-          {col.map((src, itemIndex) => (
-            <div key={src}>
-              <img className="h-auto w-full rounded-lg" src={src}/>
-            </div>
-          ))}
-
-        </div>
-      ))}
-    </div>
+      <div
+        className="grid gap-4"
+        style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
+      >
+        {columns.map((col, colIndex) => (
+          <div key={colIndex} className="flex flex-col gap-4 min-h-[50px]">
+            {col.map((src) => (
+              <img key={src} className="h-auto w-full rounded-lg" src={src} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
