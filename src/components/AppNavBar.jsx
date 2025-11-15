@@ -8,8 +8,6 @@ export default function AppNavBar() {
             <nav className="flex gap-3">
                 <Link className="font-extralight tracking-widest text-primary" to="/">Quests</Link>
                 <Link className="font-extralight tracking-widest text-primary" to="/collection">Collection</Link>
-                <Link className="font-extralight tracking-widest text-primary" to="/framer">F</Link>
-                <Link className="font-extralight tracking-widest text-primary" to="/again">A</Link>
                 <AppThemeToggle />
             </nav>
         </div>
