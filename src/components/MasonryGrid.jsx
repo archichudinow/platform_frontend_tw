@@ -1,67 +1,70 @@
 import { useState, useMemo, useEffect } from "react";
-
-const items = [
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
-];
+import TodoCard from "./TodoCard";
+import { useTodos } from "../api/useTodos";
 
 export default function MasonryGrid() {
+  // 1. Always call hooks at the top
+  const {
+    data,
+    isLoading,
+    isPending,
+    isError,
+  } = useTodos({ period: "current_day" });
+
   const [numCols, setNumCols] = useState(5);
 
-  // --- Responsive screen-size handler ---
+  // 2. Resize handler (hook always runs)
   useEffect(() => {
     const updateColumns = () => {
       const width = window.innerWidth;
 
       if (width <= 640) {
-        setNumCols(2); // sm
+        setNumCols(2);
       } else if (width >= 1024) {
-        setNumCols(5); // lg
+        setNumCols(5);
       } else if (width >= 768) {
-        setNumCols(3); // md
+        setNumCols(3);
       }
     };
 
-    updateColumns(); // run initially
+    updateColumns();
     window.addEventListener("resize", updateColumns);
-
     return () => window.removeEventListener("resize", updateColumns);
   }, []);
 
-  // Create columns when numCols changes
+  // 3. Prepare todos list (safe even when loading/error)
+  const todos = data ?? [];
+
+  // 4. Memoized columns (always runs)
   const columns = useMemo(() => {
     const cols = Array.from({ length: numCols }, () => []);
-    items.forEach((item, index) => {
-      cols[index % numCols].push(item);
+    todos.forEach((todo, index) => {
+      cols[index % numCols].push(todo);
     });
     return cols;
-  }, [numCols]);
+  }, [numCols, todos]);
+
+  // 5. Render (safe to condition here!)
+  if (isLoading || isPending) {
+    return <div className="grid gap-4"></div>;
+  }
+
+  if (isError) {
+    return <div className="grid gap-4"></div>;
+  }
 
   return (
-    <>
-      <div
-        className="grid gap-4"
-        style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
-      >
-        {columns.map((col, colIndex) => (
-          <div key={colIndex} className="flex flex-col gap-4 min-h-[50px]">
-            {col.map((src) => (
-              <img key={src} className="h-auto w-full rounded-lg" src={src} />
-            ))}
-          </div>
-        ))}
-      </div>
-
-    </>
+    <div
+      className="grid gap-4 px-4"
+      style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
+    >
+      {columns.map((col, colIndex) => (
+        <div key={colIndex} className="flex flex-col gap-4">
+          {col.map((todoItem) => (
+            <TodoCard key={todoItem.id} todoItem={todoItem} />
+          ))}
+        </div>
+      ))}
+    </div>
   );
 }
