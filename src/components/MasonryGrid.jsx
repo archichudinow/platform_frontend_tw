@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 const items = [
   "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
@@ -18,6 +18,26 @@ const items = [
 export default function MasonryGrid() {
   const [numCols, setNumCols] = useState(5);
 
+  // --- Responsive screen-size handler ---
+  useEffect(() => {
+    const updateColumns = () => {
+      const width = window.innerWidth;
+
+      if (width <= 640) {
+        setNumCols(2); // sm
+      } else if (width >= 1024) {
+        setNumCols(5); // lg
+      } else if (width >= 768) {
+        setNumCols(3); // md
+      }
+    };
+
+    updateColumns(); // run initially
+    window.addEventListener("resize", updateColumns);
+
+    return () => window.removeEventListener("resize", updateColumns);
+  }, []);
+
   // Create columns when numCols changes
   const columns = useMemo(() => {
     const cols = Array.from({ length: numCols }, () => []);
@@ -27,18 +47,8 @@ export default function MasonryGrid() {
     return cols;
   }, [numCols]);
 
-  const handleIncrease = () => setNumCols((n) => n + 1);
-  const handleDecrease = () =>
-    setNumCols((n) => (n > 1 ? n - 1 : n)); // prevent 0 columns
-
   return (
     <>
-      <div className="flex justify-center gap-3 pb-10">
-        <button onClick={handleDecrease}>DECREASE</button>
-        <h3>{numCols}</h3>
-        <button onClick={handleIncrease}>INCREASE</button>
-      </div>
-
       <div
         className="grid gap-4"
         style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
@@ -51,6 +61,7 @@ export default function MasonryGrid() {
           </div>
         ))}
       </div>
+
     </>
   );
 }
