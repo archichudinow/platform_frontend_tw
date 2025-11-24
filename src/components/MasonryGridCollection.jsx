@@ -21,9 +21,9 @@ export default function MasonryGrid({period}) {
       if (width <= 640) {
         setNumCols(2);
       } else if (width >= 1024) {
-        setNumCols(2);
+        setNumCols(3);
       } else if (width >= 768) {
-        setNumCols(2);
+        setNumCols(3);
       }
     };
 
