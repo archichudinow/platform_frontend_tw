@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
-import TodoCard from "./TodoCard";
 import { useTodos } from "../api/useTodos";
+import TodoCardCollection from "./TodoCardCollection";
 
 export default function MasonryGrid({period}) {
   // 1. Always call hooks at the top
@@ -21,9 +21,9 @@ export default function MasonryGrid({period}) {
       if (width <= 640) {
         setNumCols(2);
       } else if (width >= 1024) {
-        setNumCols(3);
+        setNumCols(2);
       } else if (width >= 768) {
-        setNumCols(3);
+        setNumCols(2);
       }
     };
 
@@ -61,7 +61,7 @@ export default function MasonryGrid({period}) {
       {columns.map((col, colIndex) => (
         <div key={colIndex} className="flex flex-col gap-4">
           {col.map((todoItem) => (
-            <TodoCard key={todoItem.id} todoItem={todoItem} />
+            <TodoCardCollection key={todoItem.id} todoItem={todoItem} />
           ))}
         </div>
       ))}

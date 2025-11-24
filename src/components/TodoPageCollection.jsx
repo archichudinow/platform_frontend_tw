@@ -1,4 +1,4 @@
-import TodoGridCollection from "./TodoGridCollection";
+import MasonryGridCollection from "./MasonryGrid";
 
 export default function TodoCollection() {
 
@@ -11,7 +11,7 @@ export default function TodoCollection() {
                 <h1>5/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b  border-primary/50"></div>
-            <TodoGridCollection period={"current_day"}/>
+            <MasonryGridCollection period={"current_day"}/>
         </div>
 
         <div className="mb-10 text-primary/50">
@@ -20,7 +20,7 @@ export default function TodoCollection() {
                 <h1>4/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b border-primary/50"></div>
-            <TodoGridCollection period={"history_day_1"}/>
+            <MasonryGridCollection period={"history_day_1"}/>
         </div>
 
         <div className="mb-10 text-primary/50">
@@ -29,7 +29,7 @@ export default function TodoCollection() {
                 <h1>10/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b border-primary/50"></div>
-            <TodoGridCollection period={"history_day_2"}/>
+            <MasonryGridCollection period={"history_day_2"}/>
         </div>
 
         <div className="mb-10 text-primary/50">
@@ -38,7 +38,7 @@ export default function TodoCollection() {
                 <h1>10/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b border-primary/50"></div>
-            <TodoGridCollection period={"history_day_3"}/>
+            <MasonryGridCollection period={"history_day_3"}/>
         </div>
 
         <div className="mb-10 text-primary/50">
@@ -47,7 +47,7 @@ export default function TodoCollection() {
                 <h1>10/20</h1>
             </div>
             <div className="mx-4 mb-10 border-b border-primary/50"></div>
-            <TodoGridCollection period={"history_day_4"}/>
+            <MasonryGridCollection period={"history_day_4"}/>
         </div>
         </>
 
