@@ -3,6 +3,7 @@ import { useDelTodo } from '../api/useTodos';
 
 export default function TodoCardCollection({todoItem}) {
     const [isCompleted, setIsCompleted] = useState(todoItem.status);
+    const [imgSrc, setImgSrc] = useState(todoItem.image);
 
     const delTodo = useDelTodo();
     const loadingState = delTodo.isPending;
@@ -25,8 +26,9 @@ export default function TodoCardCollection({todoItem}) {
         {/* FRONT BACKGROUND */}
         <img
             className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
-            src={todoItem.image}
+            src={imgSrc}
             alt="card cover image"
+            onError={() => setImgSrc("/image_load_error.jpg")}
         />
 
         {/* FRONT CONTENT */}
@@ -66,8 +68,9 @@ export default function TodoCardCollection({todoItem}) {
         {/* BACK BACKGROUND */}
         <img
             className="relative block w-full h-auto min-h-32 opacity-75"
-            src={todoItem.image}
+            src={imgSrc}
             alt="card cover image"
+            onError={() => setImgSrc("/image_load_error.jpg")}
         />
 
         {/* BACK CONTENT */}

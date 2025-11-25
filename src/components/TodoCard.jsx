@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function TodoCard({todoItem}) {
     const [isCompleted, setIsCompleted] = useState(todoItem.status);
+    const [imgSrc, setImgSrc] = useState(todoItem.image);
 
     const delTodo = useDelTodo();
     const updTodo = useUpdTodo();
@@ -33,8 +34,9 @@ export default function TodoCard({todoItem}) {
         {/* FRONT BACKGROUND */}
         <img
             className="relative opacity-5 grayscale block w-full min-h-32 h-full mask-alpha mask-center mask-cover not-even:mask-[url(/mask_inv.png)]"
-            src={todoItem.image}
+            src={imgSrc}
             alt="card cover image"
+            onError={() => setImgSrc("/image_load_error.jpg")}
         />
 
         {/* FRONT CONTENT */}
@@ -82,8 +84,9 @@ export default function TodoCard({todoItem}) {
         {/* BACK BACKGROUND */}
         <img
             className="relative block w-full h-auto min-h-32 opacity-75"
-            src={todoItem.image}
+            src={imgSrc}
             alt="card cover image"
+            onError={() => setImgSrc("/image_load_error.jpg")}
         />
 
         {/* BACK CONTENT */}
