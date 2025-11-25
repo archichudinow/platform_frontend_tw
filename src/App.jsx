@@ -4,7 +4,6 @@ import TodoPageCollection from "./components/TodoPageCollection";
 import MasonryGrid from "./components/MasonryGrid";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import SimpleGrid from "./components/SimpleGrid"
 
 const queryClient = new QueryClient();
 
@@ -25,7 +24,6 @@ function App() {
               <Route path="/" element={<TodoPageMain />}></Route>
               <Route path="/collection" element={<TodoPageCollection />}></Route>
               <Route path="/grid" element={<MasonryGrid />}></Route>
-              <Route path="/simple_grid" element={<SimpleGrid />}></Route>
             </Routes>
           </div>
 
